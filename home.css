@@ -1,0 +1,69 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.navWrapper{
+width: 100vw;
+height: 15vh;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.nav{
+    width: 90%;
+    height: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width: 10%;
+}
+.navbar{
+    width: 30%;
+   display: flex;
+}
+.navbar ul{
+    width: 90%;
+    list-style: none;
+    display: inline-flex;
+    justify-content: space-evenly;
+}
+.navRegister{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navPrijava{
+    width: 20%;
+    height: 3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: #2559D2 1px solid;
+    border-radius: 5%;
+}
+.navRegg{
+    width: 20%;
+   height:3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2559D2 ;
+    border-radius: 5%;
+}
+.navRegister h1{
+    font-family: Steradian TRIAL;
+    font-size: 14px ;
+}
+
