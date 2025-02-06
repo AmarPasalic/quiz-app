@@ -2,12 +2,12 @@ import React from "react";
 import "../styles/home.css";
 
 import homePic from "../assets/images/home-bg.png"
-import Nav from "../components/nav"
+
 const Home: React.FC = () => {
   return (
     <div className="container">
 
-    <Nav />
+   
 
       <div className="mainWrapper">
         <div className="main">
