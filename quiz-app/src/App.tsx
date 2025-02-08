@@ -1,19 +1,30 @@
+import './App.css';
+import Home from './pages/home';
+import Login from './pages/login';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
+import Navigation from './components/nav';
 
-import './App.css'
-import Home from './pages/home'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navigation from './components/nav'
 const AppContent = () => {
+  const location = useLocation();
+  const isLoginOrRegister = ['/login', '/register', '/quiz'].includes(
+    location.pathname
+  );
+
   return (
     <>
-      <Navigation />
+      {!isLoginOrRegister && <Navigation />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Home />} />
         <Route path="/guides" element={<Home />} />
-        <Route path="/leaderboard" element={<Home/>} />
+        <Route path="/leaderboard" element={<Home />} />
         <Route path="/quiz" element={<Home />} />
-        <Route path="/login" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Home />} />
       </Routes>
     </>
