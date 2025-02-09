@@ -1,6 +1,7 @@
 import './App.css';
 import Home from './pages/home';
 import Login from './pages/login';
+import Register from"./pages/signup"
 import {
   BrowserRouter as Router,
   Routes,
@@ -25,7 +26,7 @@ const AppContent = () => {
         <Route path="/leaderboard" element={<Home />} />
         <Route path="/quiz" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Home />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/login.module.css";
 import mainImg from "../assets/images/Frame 35.svg";
 import logo from "../assets/images/Quiz BiH.svg";
-
+import Button from "../components/regiterButton";
 const Login: React.FC = () => {
     return (
         <div className={styles.container}>
@@ -23,11 +23,14 @@ const Login: React.FC = () => {
                     <input type='password' placeholder='Password' />
                 </div>
                 <div className={styles.reset}>
-                    <h2>Zaboravili ste lozinku?</h2>
-                    <h2>Resetiraj lozinku?</h2>
+                    <h2 className={styles.resetBtn}>Zaboravili ste lozinku?</h2>
+                    <h2 className={styles.resetBtn2}>Resetiraj lozinku</h2>
                 </div>
-                <div className={styles.button}></div>
-                <div className={styles.footer}></div>
+                <Button text="Prijavi se" />
+                <div className={styles.footer}>
+                    <h1>Nemate racun? <span>  Registruj se.</span></h1>
+                    
+                </div>
             </div>
         </div>
     );
