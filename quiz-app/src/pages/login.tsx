@@ -26,7 +26,7 @@ const Login: React.FC = () => {
                     <h2 className={styles.resetBtn}>Zaboravili ste lozinku?</h2>
                     <h2 className={styles.resetBtn2}>Resetiraj lozinku</h2>
                 </div>
-                <Button text="Prijavi se" />
+                <Button onClick={() =>console.log("ee")} text="Prijavi se" />
                 <div className={styles.footer}>
                     <h1>Nemate racun? <span>  Registruj se.</span></h1>
                     

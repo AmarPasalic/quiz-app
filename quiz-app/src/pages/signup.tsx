@@ -1,9 +1,31 @@
-import React from 'react'
+import React  from 'react'
 import styles from '../styles/signup.module.css'
 import logo from '../assets/images/Quiz BiH.svg'
 import mainImg from '../assets/images/Frame 45.svg'
 import Button from "../components/regiterButton"
+import createUser from "../hooks/userRegister"
+import { useState } from 'react';
+
 const signup: React.FC = () => {
+
+const [email, setEmail] = useState('');
+const [username, setUsername] = useState('');
+const [password, setPassword] = useState('');
+const [confirmPassword, setConfirmPassword] = useState('');
+
+const handleRegister = () => {
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    createUser(
+        email,
+     password,
+        username,
+    
+    );
+}
     return (
         <div className={styles.container}>
             <div className={styles.imageDiv}>
@@ -18,17 +40,17 @@ const signup: React.FC = () => {
                     <p>Popunite informacije za registraciju</p>
                 </div>
                 <div className={styles.form}>
-                    <input type='email' placeholder='Email' />
-                    <input type='text' placeholder='Korisničko ime' />
-                    <input type='password' placeholder='Password' />
-                    <input type='password' placeholder='Ponovite password' />
+                    <input value={email} onChange={(e)=> setEmail(e.target.value)} type='email' placeholder='Email' />
+                    <input value={username} onChange={(e)=> setUsername(e.target.value)}  type='text' placeholder='Korisničko ime' />
+                    <input value={password} onChange={(e)=> setPassword(e.target.value)} type='password' placeholder='Password' />
+                    <input value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} type='password' placeholder='Ponovite password' />
                 </div>
-                <Button text="Registruj se" />
+                <Button onClick={handleRegister} text="Registruj se" />
                 <div className={styles.footer}>
                     <h1>Vec imate racun?   <span>Prijavi se</span>     </h1>
-                   
-                    
-                    </div>
+
+
+                </div>
             </div>
         </div>
     )
