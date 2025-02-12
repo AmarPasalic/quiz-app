@@ -29,7 +29,9 @@ body{
     justify-content: center;
     align-items: flex-start;
 }
-
+.title{
+    height: 15%;
+}
 .title h1{
 font-size: 32px;
 color: black;
@@ -37,6 +39,35 @@ color: black;
 }
 .title p{
     font-size: 16px;
+    color: black;
+    opacity: 60%;
+}
+.Gbutton{
+    width: 76%;
+    height: 48px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+}
+.Gbutton img{
+    width: 26px;
+    height: 26px;
+}
+.divider{
+    width: 76%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.divider p{
+    font-size: 14px;
     color: black;
     opacity: 60%;
 }

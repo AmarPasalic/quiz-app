@@ -3,6 +3,8 @@ import styles from "../styles/login.module.css";
 import mainImg from "../assets/images/Frame 35.svg";
 import logo from "../assets/images/Quiz BiH.svg";
 import Button from "../components/regiterButton";
+import GButton from "../components/authButton"
+import providerImg from"../assets/images/icons8-google.svg"
 const Login: React.FC = () => {
     return (
         <div className={styles.container}>
@@ -17,7 +19,8 @@ const Login: React.FC = () => {
                     <h1>Prijavite se na vaš račun</h1>
                     <p>Unesite informacije za prijavu</p>
                 </div>
-                <div className={styles.Gbutton}></div>
+                <GButton providerImg={providerImg} providerName="Google" onClick={() => console.log("ee")} />
+                    <div className={styles.divider}><p>ili</p></div>
                 <div className={styles.form}>
                     <input type='email' placeholder='Email' />
                     <input type='password' placeholder='Password' />
