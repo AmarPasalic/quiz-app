@@ -62,16 +62,18 @@ body{
         width: 76%;
         height: 10%;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
     }
-    .footer h1 {
+    .footer p{
         font-size: 14px;
         color: black;
         opacity: 0.6; 
+
       }
       
-      .footer span {
+      .footer a {
+        text-decoration: none;
         color: #2559D2;
         opacity: 1 !important;
       }
