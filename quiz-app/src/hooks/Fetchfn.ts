@@ -1,4 +1,4 @@
-const fetchData = async (url: string, meth: string, body: object) => {
+const fetchData = async (url: string="", meth: string="GET", body: object={}) => {
     const token = localStorage.getItem("token")
 
     try {
