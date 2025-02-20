@@ -6,7 +6,7 @@ const createUser = async (email: string, password: string, firstName: string, la
 console.log( typeof email, typeof password, firstName, lastName);
     try {
       const response = await fetch(
-        "/api/user",
+        "/api/users",
         {
           method: "POST",
           headers: {
@@ -17,12 +17,15 @@ console.log( typeof email, typeof password, firstName, lastName);
            password,
            firstName,
          "lastName": lastName,
-          "username": "ksfqm"
+          "username": "dm"
           }),
         }
+      
+     
       );
       const data = await response.json();
       console.log(data);
+      localStorage.setItem("token", data.user.token);
     } catch (error) {
       console.log(error);
     } finally {

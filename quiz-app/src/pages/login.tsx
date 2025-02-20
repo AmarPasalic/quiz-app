@@ -5,7 +5,12 @@ import logo from "../assets/images/Quiz BiH.svg";
 import Button from "../components/regiterButton";
 import GButton from "../components/authButton"
 import providerImg from"../assets/images/icons8-google.svg"
+import login from "../hooks/userLogin" 
+import { useState } from "react";
+
 const Login: React.FC = () => {
+    const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
     return (
         <div className={styles.container}>
             <div className={styles.imageDiv}>
@@ -22,14 +27,16 @@ const Login: React.FC = () => {
                 <GButton providerImg={providerImg} providerName="Google" onClick={() => console.log("ee")} />
                     <div className={styles.divider}><p>ili</p></div>
                 <div className={styles.form}>
-                    <input type='email' placeholder='Email' />
-                    <input type='password' placeholder='Password' />
+                    <input onChange={(e)=> setEmail(e.target.value)} type='email' placeholder='Email' />
+                    <input onChange={(e)=> setPassword(e.target.value)} type='password' placeholder='Password' />
                 </div>
                 <div className={styles.reset}>
                     <h2 className={styles.resetBtn}>Zaboravili ste lozinku?</h2>
                     <h2 className={styles.resetBtn2}>Resetiraj lozinku</h2>
                 </div>
-                <Button onClick={() =>console.log("ee")} text="Prijavi se" />
+                <Button onClick={()=>{
+                    login(email, password)
+                } } text="Prijavi se" />
                 <div className={styles.footer}>
                     <h1>Nemate racun? <span>  Registruj se.</span></h1>
                     
