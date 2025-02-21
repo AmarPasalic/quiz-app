@@ -7,7 +7,7 @@ import createUser from "../hooks/userRegister"
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
 
-const signup: React.FC = () => {
+const Signup: React.FC = () => {
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -57,4 +57,4 @@ const signup: React.FC = () => {
     )
 }
 
-export default signup
+export default Signup
