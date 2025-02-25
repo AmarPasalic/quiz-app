@@ -11,6 +11,14 @@ import { useState } from "react";
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
+const [error, setError] = useState('');
+const handleLogin = async () => {
+if(email === '' || password === ''){
+    setError('Molimo popunite sva polja')
+    return;
+}
+ const result = await login(email, password)
+}
     return (
         <div className={styles.container}>
             <div className={styles.imageDiv}>
@@ -33,10 +41,12 @@ const [password, setPassword] = useState('');
                 <div className={styles.reset}>
                     <h2 className={styles.resetBtn}>Zaboravili ste lozinku?</h2>
                     <h2 className={styles.resetBtn2}>Resetiraj lozinku</h2>
-                </div>
+                </div> 
+                {error && <p className={styles.error}>{error}</p>}
                 <Button onClick={()=>{
-                    login(email, password)
+                   handleLogin()
                 } } text="Prijavi se" />
+               
                 <div className={styles.footer}>
                     <h1>Nemate racun? <span>  Registruj se.</span></h1>
                     

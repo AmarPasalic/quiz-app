@@ -13,13 +13,15 @@ const Signup: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-
+    const [error, setError] = useState('');
     const handleRegister = () => {
         if (password !== confirmPassword) {
-            alert('Passwords do not match');
+            setError('Passwordi se ne poklapaju');
             return;
         }
-
+     if(email === '' || username === '' || password === '' || confirmPassword === ''){
+        setError('Molimo popunite sva polja')
+     }
         createUser(
             email,
             password,
@@ -46,6 +48,7 @@ const Signup: React.FC = () => {
                     <input value={password} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' />
                     <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type='password' placeholder='Ponovite password' />
                 </div>
+               {error && <p className={styles.error}>{error}</p>}
                 <Button onClick={handleRegister} text="Registruj se" />
                 <div className={styles.footer}>
                     <p>Vec imate racun?       </p>

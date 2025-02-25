@@ -21,7 +21,7 @@ const userLogin = async (email:string, password:string) =>  {
   
       localStorage.setItem("token", data.user.token);
     } catch (error) {
-      console.log(error);
+     return error
     } finally {
       console.log("finally");
     }

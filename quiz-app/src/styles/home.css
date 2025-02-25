@@ -124,6 +124,7 @@ justify-content: center;
 .mainPic img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 .button{
     width: 384px;
