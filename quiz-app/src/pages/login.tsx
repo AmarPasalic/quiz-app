@@ -7,18 +7,24 @@ import GButton from "../components/authButton"
 import providerImg from"../assets/images/icons8-google.svg"
 import login from "../hooks/userLogin" 
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [error, setError] = useState('');
+
 const handleLogin = async () => {
-if(email === '' || password === ''){
-    setError('Molimo popunite sva polja')
-    return;
-}
- const result = await login(email, password)
-}
+    if (email === '' || password === '') {
+      setError('Molimo popunite sva polja');
+      return;
+    }
+
+   login(email, password)
+   
+  };
+
     return (
         <div className={styles.container}>
             <div className={styles.imageDiv}>
@@ -48,7 +54,8 @@ if(email === '' || password === ''){
                 } } text="Prijavi se" />
                
                 <div className={styles.footer}>
-                    <h1>Nemate racun? <span>  Registruj se.</span></h1>
+                <p>Nemate racun?       </p>
+                <Link to="/register">Registruj se</Link>
                     
                 </div>
             </div>

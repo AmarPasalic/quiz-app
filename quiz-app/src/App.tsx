@@ -1,7 +1,7 @@
 import './App.css';
 import Home from './pages/home';
 import Login from './pages/login';
-import Register from"./pages/signup"
+import Register from"./pages/Signup"
 import {
   BrowserRouter as Router,
   Routes,
