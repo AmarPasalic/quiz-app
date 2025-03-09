@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/home.css";
-
+import{useNavigate} from "react-router-dom"
 import homePic from "../assets/images/home-bg.png"
 import Button from "../components/regiterButton";
 
@@ -45,9 +45,15 @@ const Home: React.FC = () => {
                 <img src={stick} />
                 <h1>Kako funkcioniše kviz?</h1>
               </div>
-              <p>U našem kvizu, jednostavno je izazvati sebe i druge! Odaberite kviz, odgovorite na pitanja u zadanom vremenu i osvojite što više tačnih odgovora. Na kraju, možete provjeriti svoj rezultat i uporediti se sa najboljima na leaderboardu. Brzo, zabavno i edukativno!</p>
+              <div className="cardsP">
+                <p>U našem kvizu, jednostavno je izazvati sebe i druge! Odaberite kviz, odgovorite na pitanja u zadanom vremenu i osvojite što više tačnih odgovora. Na kraju, možete provjeriti svoj rezultat i uporediti se sa najboljima na leaderboardu. Brzo, zabavno i edukativno!</p>
+              </div>
+  
             </div>
-            <Button text="Započni kviz" onClick={() => console.log("Button clicked")} className="CardBtn" />
+           
+                <Button text="Započni kviz" onClick={() => useNavigate("/QuizPage")} className="CardBtn" />
+          
+          
           </div>
           <div className="cards">
          <Card title="Prijavi se" desc="Regidtruj se na Quiz Bih" image={pic1} onClick={()=>{}} />
