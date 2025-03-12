@@ -2,6 +2,7 @@ import './App.css';
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from"./pages/Signup"
+import QuizPage from './pages/QuizPage';
 import {
   BrowserRouter as Router,
   Routes,
@@ -24,7 +25,7 @@ const AppContent = () => {
         <Route path="*" element={<Home />} />
         <Route path="/guides" element={<Home />} />
         <Route path="/leaderboard" element={<Home />} />
-        <Route path="/quiz" element={<Home />} />
+        <Route path="/quiz" element={<QuizPage/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

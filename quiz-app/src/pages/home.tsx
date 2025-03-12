@@ -10,6 +10,11 @@ import pic2 from "../assets/images/card-2.png";
 import pic3 from "../assets/images/card-3.png";
 import Card from "../components/Cards";
 const Home: React.FC = () => {
+ const navigate = useNavigate();
+  const handleStartQuiz = () => {
+   navigate("/quiz")
+
+  }
   return (
     <div className="container">
 
@@ -24,7 +29,7 @@ const Home: React.FC = () => {
             <p>
               Testirajte svoje znanje o historiji, kulturi i znamenitostima naše predivne domovine! Koliko dobro poznajete Bosnu i Hercegovinu?
             </p>
-            <div className="button">
+            <div onClick={handleStartQuiz} className="button">
               <h1>Započni kviz</h1>
             </div>
             <div className="footer">
@@ -51,7 +56,7 @@ const Home: React.FC = () => {
   
             </div>
            
-                <Button text="Započni kviz" onClick={() => useNavigate("/QuizPage")} className="CardBtn" />
+                <Button text="Započni kviz" onClick={ handleStartQuiz} className="CardBtn" />
           
           
           </div>
