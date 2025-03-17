@@ -144,10 +144,10 @@ height: 80%;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
 }
 .answer{
     width: 70%;
-    aspect-ratio: 812 / 58;
     display: flex;
     justify-content: flex-start;
     align-items: center;

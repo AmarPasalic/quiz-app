@@ -1,11 +1,23 @@
-import React from 'react'
-import styles from '../styles/popup.module.css'
-import Button from "../components/Whitebutton"
-import icon from "../assets/images/smily.svg"
+import React from 'react';
+import styles from '../styles/popup.module.css';
+import icon from "../assets/images/smily.svg";
+import Button from "../components/Whitebutton";
+import { useNavigate } from 'react-router-dom';
+
 const Popup: React.FC = () => {
+    const navigate = useNavigate();
+
+    const redirect = () => {
+        navigate("/home");
+    };
+
+    const advancedRedirect = () => {
+        navigate("/quiz");
+    };
+
     return (
-        <div className={styles.container}>
-            <div className={styles.popup}>
+        <div className={styles.container} onClick={redirect}>
+            <div className={styles.popup} onClick={(e) => e.stopPropagation()}>
                 <div className={styles.title}>
                     <h1>Spremite se za Quiz BiH</h1>
                 </div>
@@ -15,10 +27,10 @@ const Popup: React.FC = () => {
                 <div className={styles.icon}>
                     <img src={icon} alt="icon" />
                 </div>
-                <Button />
+                <Button txt='Započni kviz' redirect={advancedRedirect} />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Popup
+export default Popup;

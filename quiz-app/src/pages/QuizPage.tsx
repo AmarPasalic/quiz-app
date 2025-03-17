@@ -7,7 +7,12 @@ import medal from "../assets/images/medal.svg"
 import star from "../assets/images/star.svg"
 import clock from "../assets/images/clock.svg"
 import Answer from '../components/Answer'
+import { useNavigate } from 'react-router-dom'
 const QuizPage: React.FC = () => {
+    const navigate = useNavigate();
+    const popupHandleOpen = () => {
+        navigate("/popupend");
+    }
     return (
         <div className={style.quizContainer}>
             <div className={style.quizWrapper}>
@@ -26,7 +31,7 @@ const QuizPage: React.FC = () => {
                             <div className={style.questionNum}>
                                 <p>Pitanje 1 od 20</p>
                             </div>
-                            <div className={style.Button1}>
+                            <div onClick={popupHandleOpen} className={style.Button1}>
                                 <p>Zavrsi kviz</p>
                             </div>
                         </div>

@@ -294,3 +294,122 @@ margin: 0;
 }
 
 
+
+.leaderWrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cardsHeader{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.leaderContainer {
+    width: 80%;
+    height: 80%;
+    background-color: #2559D2;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden; /* Ensure content fits within the container */
+}
+
+.leaderTitle {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaderTitle h1 {
+    font-size: 40px;
+    margin: 0;
+    color: #ffff;
+    font-weight: 700;
+    line-height: 52px;
+}
+
+.leaderTitle p {
+    font-size: 16px;
+    color: #ffff;
+    opacity: 60%;
+    font-weight: 400;
+    line-height: 20.8px;
+    text-align: center;
+}
+
+.leaderBoard {
+    overflow-y: auto; /* Allow vertical scrolling */
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.user {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+    background-color: #ffff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 1px rgb(255, 255, 255);
+}
+
+.userPlace p {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20.8px;
+    overflow: hidden;
+}
+
+.user h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20.8px;
+    overflow: hidden;
+}
+
+.userInfo {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+.userInfo p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20.8px;
+    overflow: hidden;
+}
+
+.userScore {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.secondUser {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
