@@ -1,0 +1,66 @@
+import React from "react";
+import styles from "../styles/login.module.css";
+import mainImg from "../assets/images/Frame 35.svg";
+import logo from "../assets/images/Quiz BiH.svg";
+import Button from "../components/regiterButton";
+import GButton from "../components/authButton"
+import providerImg from"../assets/images/icons8-google.svg"
+import login from "../hooks/userLogin" 
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
+
+const Login: React.FC = () => {
+    const [email, setEmail] = useState('');
+const [password, setPassword] = useState('');
+const [error, setError] = useState('');
+
+const handleLogin = async () => {
+    if (email === '' || password === '') {
+      setError('Molimo popunite sva polja');
+      return;
+    }
+
+   login(email, password)
+   
+  };
+
+    return (
+        <div className={styles.container}>
+            <div className={styles.imageDiv}>
+                <img src={mainImg} alt="Main Image" />
+            </div>
+            <div className={styles.formDiv}>
+                <div className={styles.logo}>
+                    <img src={logo} alt="Logo" />
+                </div>
+                <div className={styles.title}>
+                    <h1>Prijavite se na vaš račun</h1>
+                    <p>Unesite informacije za prijavu</p>
+                </div>
+                <GButton providerImg={providerImg} providerName="Google" onClick={() => console.log("ee")} />
+                    <div className={styles.divider}><p>ili</p></div>
+                <div className={styles.form}>
+                    <input onChange={(e)=> setEmail(e.target.value)} type='email' placeholder='Email' />
+                    <input onChange={(e)=> setPassword(e.target.value)} type='password' placeholder='Password' />
+                </div>
+                <div className={styles.reset}>
+                    <h2 className={styles.resetBtn}>Zaboravili ste lozinku?</h2>
+                    <h2 className={styles.resetBtn2}>Resetiraj lozinku</h2>
+                </div> 
+                {error && <p className={styles.error}>{error}</p>}
+                <Button onClick={()=>{
+                   handleLogin()
+                } } text="Prijavi se" />
+               
+                <div className={styles.footer}>
+                <p>Nemate racun?       </p>
+                <Link to="/register">Registruj se</Link>
+                    
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
