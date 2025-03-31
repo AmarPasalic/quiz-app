@@ -19,7 +19,9 @@ const Nav: React.FC = () => {
     <nav className="navWrapper">
       <div className="nav">
         <div className="logo">
+        <ScrollLink to="home" smooth={true} duration={500}>
           <img src={logo} alt="Quiz BiH Logo" />
+        </ScrollLink>
         </div>
         <ul className="navbar">
           <ScrollLink to="home" smooth={true} duration={500}>

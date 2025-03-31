@@ -26,12 +26,12 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div  className="container">
-      <div id="home" className="mainWrapper">
+    <div id="home"  className="container">
+      <div className="mainWrapper">
         <div className="main">
           <div className="mainTxt">
             <h1>
-              Pokažite svoje znanje o <span>Bosni i Hercegovini</span>
+              Pokažite svoje znanje o <span>Bosni i Hercegovini</span>.
             </h1>
             <p>
               Testirajte svoje znanje o historiji, kulturi i znamenitostima naše predivne domovine! Koliko dobro poznajete Bosnu i Hercegovinu?
@@ -68,7 +68,7 @@ const Home: React.FC = () => {
           </div>
           <div className="cards">
             <Card title="Prijavi se" desc="Regidtruj se na Quiz Bih" image={pic1} onClick={() => {}} />
-            <Card title="Uradi kviz" desc="Odgovori na sva pitanja koja imamo!" image={pic2} onClick={() => {}} />
+            <Card  title="Uradi kviz" desc="Odgovori na sva pitanja koja imamo!" image={pic2} onClick={() => {}} />
             <Card title="Budi 1#" desc="Osvoji ljestvicu i budi prvi" image={pic3} onClick={() => {}} />
           </div>
         </div>

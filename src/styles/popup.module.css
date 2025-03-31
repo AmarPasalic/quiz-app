@@ -81,3 +81,10 @@
     line-height: 26px;
     color: #2559D2;
 }
+
+@media (max-width: 768px) {
+    .button{
+        width: 256px;
+        height: 41px;
+    }
+}

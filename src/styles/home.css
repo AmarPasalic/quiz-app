@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-   
+
 }
 
 .container {
@@ -30,9 +30,7 @@ body {
     justify-content: space-between;
 }
 
-.logo {
-    width: 10%;
-}
+
 
 .navbar {
     width: 40%;
@@ -48,7 +46,7 @@ body {
 }
 
 .navRegister {
-    width: 20%;
+    min-width: 20%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -65,14 +63,14 @@ body {
 
 .navPrijava {
     width: 40%;
-    
+
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
     border: #2559D2 1px solid;
     border-radius: 5%;
-    
+
 }
 
 .navRegg {
@@ -110,17 +108,17 @@ body {
     height: 95%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .mainTxt {
-    width: 35%;
-    height: 100%;
+    max-width: 37%;
+    max-height: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    gap: 10px;
+
 }
 
 .mainTxt h1 {
@@ -138,7 +136,7 @@ body {
 }
 
 .mainPic {
-    width: 70%;
+    max-width: 70%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -177,22 +175,24 @@ body {
     opacity: 60%;
 }
 
-.cardWrapper{
+.cardWrapper {
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.cardsContainer{
-width: 90%;
-height: 80%;
-display: flex;
-flex-direction: column;
-align-items: center;
+
+.cardsContainer {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
-.cardsHeader{
+
+.cardsHeader {
     width: 100%;
     height: 20%;
     display: flex;
@@ -200,7 +200,7 @@ align-items: center;
     justify-content: center;
 }
 
-.cardsTxt{
+.cardsTxt {
     width: 100%;
     height: 100%;
     display: flex;
@@ -209,50 +209,57 @@ align-items: center;
     justify-content: space-between;
     overflow: hidden;
 }
-.cardsTitle{
-    width: 45%;
-display: flex;
-justify-content: space-around;
+
+.cardsTitle {
+
+    display: flex;
+    justify-content: space-around;
 }
-.cardsP{
+
+.cardsP {
     width: 70%;
-    
+
 }
-.cardsTxt h1{
+
+.cardsTxt h1 {
     font-size: 40px;
     color: black;
     margin: 0;
 }
-.cardsTxt p{
+
+.cardsTxt p {
     font-size: 16px;
     color: black;
     opacity: 60%;
     margin: 0;
 }
 
-.CardBtn{
+.CardBtn {
     width: 280px;
     height: 50px;
     border-radius: 10px;
     display: flex;
     background-color: #2559D2;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     align-self: flex-start;
 }
-.CardBtn h1{
+
+.CardBtn h1 {
     color: #ffff;
     font-size: 16px;
-   
+
 }
-.cards{
+
+.cards {
     width: 90%;
     height: 80%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
 }
-.card{
+
+.card {
     width: 30%;
     height: 80%;
     display: flex;
@@ -262,20 +269,21 @@ justify-content: space-around;
     border-radius: 10px;
 
     background-size: cover;
- background-position: top;
+    background-position: top;
 
 }
 
-.card-content{
+.card-content {
 
-width: 90%;
-height:25%;
-display: flex;
-justify-content: space-between;
-align-items: center;
+    width: 90%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
 }
-.cardTxt{
+
+.cardTxt {
     width: 80%;
     height: 100%;
     display: flex;
@@ -285,12 +293,14 @@ align-items: center;
     overflow: hidden;
     gap: 5px;
 }
-.cardTxt h2{
-font-size: 24px;
-color: #ffff;
-margin: 0;
+
+.cardTxt h2 {
+    font-size: 24px;
+    color: #ffff;
+    margin: 0;
 }
-.cardTxt p{
+
+.cardTxt p {
     font-size: 14px;
     color: #ffff;
     margin: 0;
@@ -305,13 +315,15 @@ margin: 0;
     align-items: center;
     justify-content: center;
 }
-.cardsHeader{
+
+.cardsHeader {
     width: 100%;
     height: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .leaderContainer {
     width: 80%;
     height: 80%;
@@ -322,7 +334,7 @@ margin: 0;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 .leaderTitle {
@@ -351,7 +363,7 @@ margin: 0;
 }
 
 .leaderBoard {
-    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-y: auto;
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -415,59 +427,190 @@ margin: 0;
     justify-content: center;
     align-items: center;
 }
-@media (max-width: 768px) {
-    .nav {
-        flex-direction: column;
-        align-items: flex-start;
-    }
 
-    .logo {
-        width: 100%;
-        text-align: center;
-        margin-bottom: 10px;
-    }
+@media (max-width: 768px) {
+
 
     .navbar {
-        width: 100%;
-        justify-content: space-around;
-        margin-bottom: 10px;
+        display: none;
     }
+
 
     .navRegister {
-        width: 100%;
-        justify-content: space-around;
+        width: 50%;
     }
 
-    .navPrijava, .navRegg {
-        width: 100%;
-        height: 6vh;
+    .navRegg {
+        display: none;
     }
 
-    .navRegister {
-        flex-direction: column;
-        align-items: center;
-    }
 
     .navRegister h1 {
         font-size: 10px;
     }
+
+    .mainWrapper {
+        height: 60vh;
+        ;
+    }
+
+    .main {
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .mainTxt {
+        max-width: 100%;
+        max-height: auto;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .mainPic {
+        max-width: 100%;
+        height: 55%;
+        justify-content: flex-start;
+    }
+
+    .mainPic img {
+        width: 80%;
+    }
+
     .mainTxt h1 {
-        font-size: 1.25rem;
+        font-size: 24px;
+        text-align: center;
     }
 
     .mainTxt p {
-        font-size: 0.75rem;
+        font-size: 12px;
     }
 
     .button {
-        padding: 6px 12px;
+        width: 207px;
+        height: 41px;
+        overflow: hidden;
+    }
+
+    .button h1 {
+        font-size: 16px;
+    }
+
+    .footer {
+        display: none;
+    }
+
+    .cardWrapper {
+        height: 80vh;
+    }
+
+    .cardsContainer {
+        justify-content: space-between;
+    }
+
+    .CardBtn {
+        display: none;
+    }
+
+    .cardsP {
+        width: auto;
+
+    }
+
+    .cardsTxt {
+        align-items: center;
+    }
+
+    .cardsTxt h1 {
+        font-size: 20px;
+
+    }
+
+    .cardsTxt p {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .cardsTxt img {
+        width: 30px;
+        height: 30px;
     }
 
     .cards {
-        flex-direction: column;
+        display: block;
+        overflow: hidden;
+        height: 70%;
+    }
+
+    .card {
+        width: 90%;
+        height: 100%;
+
+    }
+
+    .cards {
+        overflow: hidden;
+    }
+
+    .leaderWrapper {
+        height: 80vh;
+    }
+
+    .leaderContainer {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+
+    .leaderTitle {
+        width: 90%;
+    }
+
+    .leaderTitle h1 {
+        font-size: 20px;
+    }
+
+    .leaderTitle p {
+        font-size: 12px;
     }
 
     .leaderBoard {
-        flex-direction: column;
+        width: 90%;
+        gap: 20px;
+    }
+
+    .userPlace p {
+        font-size: 11.12px;
+    }
+
+    .user h2 {
+        font-size: 11.12px;
+    }
+
+    .userScore p {
+        font-size: 11.12px;
+    }
+
+    .userInfo {
+        width: auto;
+    }
+
+    .userScore {
+        width: auto;
+    }
+
+    .user img {
+        width: 22.24px;
+        height: 22.24px;
+    }
+
+    .userInfo {
+        width: auto;
+        display: flex;
+        gap: 10px;
+    }
+    .secondUser{
+        width: 90%;
     }
 }
