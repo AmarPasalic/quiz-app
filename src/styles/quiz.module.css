@@ -181,3 +181,9 @@ height: 80%;
     font-weight: 400;
    line-height: 20.8px;
 }
+
+@media (max-width: 768px) {
+ #hideStat {
+    display: none;
+ }
+}

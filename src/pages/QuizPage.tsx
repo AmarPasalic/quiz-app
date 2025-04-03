@@ -20,9 +20,9 @@ const QuizPage: React.FC = () => {
                     <img src={logo} alt="Logo" />
                 </div>
                 <div className={style.stats}>
-                 <Stat icon={trophy} title='Bodovi' color='#2559D2' number={30}/>
+                 <Stat icon={trophy} title='Bodovi' color='#2559D2' number={30} />
                 <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={200}/>
-                <Stat icon={star} title="Streak" color="#EA4335" number={2}/>
+                <Stat id='hideStat' icon={star} title="Streak" color="#EA4335" number={2}  />
                 <Stat icon={clock} color="#9747FF" number={30}/>
                 </div>
                 <div className={style.body}>

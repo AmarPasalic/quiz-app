@@ -18,10 +18,10 @@ const Home: React.FC = () => {
 
 
   const popupHandleOpen = () => {
-    if (!isLogged) {
-      navigate("/login");
-      return;
-    }
+    // if (!isLogged) {
+    //   navigate("/login");
+    //   return;
+    // }
     navigate("/popup");
   };
 
