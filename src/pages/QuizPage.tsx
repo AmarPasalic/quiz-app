@@ -20,10 +20,10 @@ const QuizPage: React.FC = () => {
                     <img src={logo} alt="Logo" />
                 </div>
                 <div className={style.stats}>
-                 <Stat icon={trophy} title='Bodovi' color='#2559D2' number={30} />
-                <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={200}/>
-                <Stat id='hideStat' icon={star} title="Streak" color="#EA4335" number={2}  />
-                <Stat icon={clock} color="#9747FF" number={30}/>
+                    <Stat icon={trophy} title='Bodovi' color='#2559D2' number={30} />
+                    <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={200} />
+                    <Stat className={style.hiddenStat} icon={star} title="Streak" color="#EA4335" number={2} />
+                    <Stat icon={clock} color="#9747FF" number={30} />
                 </div>
                 <div className={style.body}>
                     <div className={style.bodyUpper}>
@@ -45,14 +45,14 @@ const QuizPage: React.FC = () => {
                         </div>
                     </div>
                     <div className={style.answersWrap}>
-                         <div className={style.answers}>
-                      <Answer iconLetter="A" txt='Održana je prva sjednica ZAVNOBiH-a'/>
-                      <Answer iconLetter="B" txt='Održana je prva sjednica AVNOJ-a'/>
-                        <Answer iconLetter="C" txt='Održana je prva sjednica AVNOJ-a'/>
-                        <Answer iconLetter="D" txt='Održana je prva sjednica AVNOJ-a'/>
+                        <div className={style.answers}>
+                            <Answer iconLetter="A" txt='Održana je prva sjednica ZAVNOBiH-a' />
+                            <Answer iconLetter="B" txt='Održana je prva sjednica AVNOJ-a' />
+                            <Answer iconLetter="C" txt='Održana je prva sjednica AVNOJ-a' />
+                            <Answer iconLetter="D" txt='Održana je prva sjednica AVNOJ-a' />
+                        </div>
                     </div>
-                    </div>
-                   
+
                 </div>
             </div>
         </div>

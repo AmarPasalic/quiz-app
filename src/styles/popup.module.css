@@ -1,5 +1,4 @@
-
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -9,7 +8,8 @@
     align-items: center;
 
 }
-.popup{
+
+.popup {
     z-index: 100;
     width: 80%;
     height: 80%;
@@ -22,22 +22,26 @@
     box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.15);
 
 }
-.title{
+
+.title {
     width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.title h1{
+
+.title h1 {
     font-size: 40px;
     font-weight: 700;
     line-height: 52px;
     color: #ffffff;
 }
-.txt{
+
+.txt {
     width: 50%;
-  
+
 }
+
 .txt {
     font-size: 16px;
     color: #ffffff;
@@ -46,26 +50,27 @@
     line-height: 20.8px;
     text-align: center;
 }
-.button{
+
+.button {
     width: 30%;
     aspect-ratio: 6/1;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-  background-color: #ffffff;
+    background-color: #ffffff;
     box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.15);
     cursor: pointer;
 }
 
-.button h1{
+.button h1 {
     color: #2559D2;
     font-size: 20px;
     font-weight: 700;
     line-height: 26px;
 }
 
-.score{
+.score {
     width: 30%;
     aspect-ratio: 6/1;
     display: flex;
@@ -75,7 +80,8 @@
     border-radius: 10px;
     box-shadow: 0 0 10px 1px rgb(255, 255, 255);
 }
-.score h6{
+
+.score h6 {
     font-size: 20px;
     font-weight: 700;
     line-height: 26px;
@@ -83,33 +89,55 @@
 }
 
 @media (max-width: 768px) {
-    .container{
+    .container {
         overflow: hidden;
     }
-    .popup{
+
+    .popup {
         width: 100%;
         height: 100%;
-       gap: 20px;
+        gap: 20px;
         border-radius: 0;
         overflow: hidden;
     }
-    .button{
+
+    .button {
         width: 256px;
         height: 41px;
         overflow: hidden;
     }
-    .title{
+
+    .title {
         width: 90%;
     }
-    .title h1{
+
+    .title h1 {
         font-size: 24px;
     }
-    .txt{
+
+    .txt {
         width: 80%;
         font-size: 12px;
     }
-     .icon img{
+
+    .closeTitle {
+        width: 70%;
+        font-size: 24px !important;
+        text-align: center;
+    }
+
+    .score {
+        width: 248px;
+        height: 41px;
+        overflow: hidden;
+    }
+
+    .score h6 {
+        font-size: 16px;
+    }
+
+    .icon img {
         width: 180px;
         height: 180px;
-     }
+    }
 }

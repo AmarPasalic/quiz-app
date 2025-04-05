@@ -11,7 +11,7 @@ const PopupClose:React.FC = () => {
   return (
  <div onClick={redirect} className={styles.container}>
     <div className={styles.popup}>
-     <div className={styles.title}>
+     <div className={`${styles.title} ${styles.closeTitle}`}>
         <h1>Čestitamo na završenom kvizu</h1>
      </div>
      <div className={styles.txt}>
