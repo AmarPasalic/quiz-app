@@ -6,7 +6,7 @@ import Button from "../components/regiterButton"
 import createUser from "../hooks/userRegister"
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
 const Signup: React.FC = () => {
 
     const [email, setEmail] = useState('');
@@ -14,7 +14,8 @@ const Signup: React.FC = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-    const handleRegister = () => {
+   const navigate = useNavigate();
+    const handleRegister = async () => {
         if (password !== confirmPassword) {
             setError('Passwordi se ne poklapaju');
             return;
@@ -22,12 +23,17 @@ const Signup: React.FC = () => {
      if(email === '' || username === '' || password === '' || confirmPassword === ''){
         setError('Molimo popunite sva polja')
      }
-        createUser(
-            email,
-            password,
-            username,
+     const result =  await  createUser(email, password,username );
+     {!result.success && setError(result.message)}
+     if(result.success){
+        setError('')
+        setEmail('')
+        setUsername('')
+        setPassword('')
+        setConfirmPassword('')
+        navigate("/home")
 
-        );
+     }
     }
     return (
         <div className={styles.container}>
@@ -36,7 +42,7 @@ const Signup: React.FC = () => {
             </div>
             <div className={styles.formDiv}>
                 <div className={styles.logo}>
-                    <img src={logo} alt="Logo" />
+                    <img onClick={()=>navigate("/home")} src={logo} alt="Logo" />
                 </div>
                 <div className={styles.title}>
                     <h1>Registujte se na Quiz BiH</h1>

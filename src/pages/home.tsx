@@ -11,17 +11,32 @@ import Card from "../components/Cards";
 import Userpp from "../assets/images/pp.svg";
 import  useAuth  from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
-
+import LeaderboardFetch from "../hooks/LeaderboardFetch";
 const Home: React.FC = () => {
   const isLogged = useAuth();
   const navigate = useNavigate();
+  const [leaderboard, setLeaderboard] = React.useState<any[]>([]);
 
+  React.useEffect(() => {
+    const fetchLeaderboard = async () => {
+      const result = await LeaderboardFetch();
+      console.log(result);
+      if (result.success) {
+       
+        setLeaderboard(result.leaderboard || []);
+      }
+      else{
+        console.error(result.message);
+      }
+    };
+    fetchLeaderboard();
+  }, []);
 
   const popupHandleOpen = () => {
-    // if (!isLogged) {
-    //   navigate("/login");
-    //   return;
-    // }
+    if (!isLogged) {
+       navigate("/login");
+       return;
+     }
     navigate("/popup");
   };
 
@@ -82,7 +97,7 @@ const Home: React.FC = () => {
             <Whitebutton txt="Započni kviz" redirect={popupHandleOpen} />
           </div>
           <div className="leaderBoard">
-            {Array.from({ length: 5 }).map((_, index) => (
+            {leaderboard.slice(0,5).map((element, index) => (
               <div className="user" key={index}>
                 <div className="userInfo">
                   <div className="userPlace">
@@ -92,11 +107,11 @@ const Home: React.FC = () => {
                     <img src={Userpp} alt="User Profile Picture" />
                   </div>
                   <div className="userName">
-                    <h2>Jamin Fajkic</h2>
+                    <h2>{element.username}</h2>
                   </div>
                 </div>
                 <div className="userScore">
-                  <p>150 bodova</p>
+                  <p>{element.bestScore} bodova</p>
                 </div>
               </div>
             ))}

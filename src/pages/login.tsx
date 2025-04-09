@@ -8,31 +8,37 @@ import providerImg from"../assets/images/icons8-google.svg"
 import login from "../hooks/userLogin" 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 const [error, setError] = useState('');
-
+   const navigate = useNavigate();
 const handleLogin = async () => {
     if (email === '' || password === '') {
       setError('Molimo popunite sva polja');
       return;
     }
 
-   login(email, password)
-   
+   const result= await login(email, password)
+   {!result.success && setError(result.message)}
+   if(result.success){
+    setError('')
+    setEmail('')
+    setPassword('')
+    navigate("/home")
+   }
   };
 
     return (
         <div className={styles.container}>
             <div className={styles.imageDiv}>
-                <img src={mainImg} alt="Main Image" />
+                <img  src={mainImg} alt="Main Image" />
             </div>
             <div className={styles.formDiv}>
                 <div className={styles.logo}>
-                    <img src={logo} alt="Logo" />
+                    <img onClick={()=>navigate("/home")} src={logo} alt="Logo" />
                 </div>
                 <div className={styles.title}>
                     <h1>Prijavite se na vaš račun</h1>

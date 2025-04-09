@@ -4,7 +4,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import "../styles/home.css";
 import logo from "../assets/images/Quiz BiH.svg";
 import useAuth from '../hooks/useAuth';
-import RegisterButton from "./regiterButton";
+
 
 const Nav: React.FC = () => {
   const isLogged = useAuth();
@@ -36,7 +36,11 @@ const Nav: React.FC = () => {
         </ul>
         <div className="navRegister">
           {isLogged ? (
-            <RegisterButton text="Odjavi se" onClick={handleLogout} />
+               <div onClick={handleLogout} className="navPrijava">
+            
+                 <h1>Odjavi se</h1>
+              
+             </div>
           ) : (
             <>
               <div className="navPrijava">
