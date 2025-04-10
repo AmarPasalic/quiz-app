@@ -8,11 +8,33 @@ import star from "../assets/images/star.svg"
 import clock from "../assets/images/clock.svg"
 import Answer from '../components/Answer'
 import { useNavigate } from 'react-router-dom'
+import Start from "../hooks/Start"
+import { useEffect } from 'react'
 const QuizPage: React.FC = () => {
     const navigate = useNavigate();
     const popupHandleOpen = () => {
         navigate("/popupend");
     }
+
+    const handleStart= async()=>{
+        const result = await Start()
+        console.log(result)
+    }
+
+    useEffect(()  =>  {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate("/login");
+        }
+        else{
+            handleStart()
+        }
+        }, []); 
+    
+
+
+
+
     return (
         <div className={style.quizContainer}>
             <div className={style.quizWrapper}>

@@ -4,7 +4,7 @@ const userLogin = async (email: string, password: string) => {
   {
     try {
       const response = await fetch(
-        "/apiauth/login",
+        "/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -24,8 +24,9 @@ const userLogin = async (email: string, password: string) => {
         return { success: false, message: data.message || "Login failed" };
       }
 
-
-      localStorage.setItem("token", data);
+      console.log("data", data);
+      
+      localStorage.setItem("token", data?.token);
 
       return { success: true, token: data};
     } catch (error) {
