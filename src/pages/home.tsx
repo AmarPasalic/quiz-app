@@ -20,7 +20,6 @@ const Home: React.FC = () => {
   React.useEffect(() => {
     const fetchLeaderboard = async () => {
       const result = await LeaderboardFetch();
-      console.log(result);
       if (result.success) {
        
         setLeaderboard(result.leaderboard || []);
