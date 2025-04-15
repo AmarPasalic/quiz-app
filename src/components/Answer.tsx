@@ -1,23 +1,20 @@
 import React from 'react'
 import style from "../styles/quiz.module.css"
-import SendQuestion from '../hooks/SendQuestion'
 interface Props{
     iconLetter: any,
     txt: string,
-    gameId: string,
-    questionId: string,
+   onClick?: () => void,
+   className?: string
 }
 
 
 
-const Answer:React.FC <Props>= ({iconLetter,txt, gameId,questionId}) => {
-    const handleQuestion = async () => {
-        console.log(gameId,questionId,txt)
-     const response= await SendQuestion(gameId,questionId,txt )
-     console.log(response)
-    }
+const Answer:React.FC <Props>= ({iconLetter,txt, onClick, className}) => {
+ 
+   const color= className
+    
   return (
-    <div onClick={handleQuestion} className={style.answer}>
+    <div onClick={onClick} className={ style.answer + " " + style[color]}>
         <div className={style.answerIcon}>
             <div className={style.answerCirc}>
                 <h5>{iconLetter}</h5>

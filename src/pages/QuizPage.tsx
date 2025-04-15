@@ -10,25 +10,46 @@ import Answer from '../components/Answer'
 import { useNavigate } from 'react-router-dom'
 import Start from "../hooks/Start"
 import { useEffect, useState } from 'react'
+import SendQuestion from '../hooks/SendQuestion'
 const QuizPage: React.FC = () => {
     const [object, setObject] = useState<any>(null);
+    const [result,setResult] = useState<any>(null);
+    const [gameId, setGameId] = useState<string>("");
+    const [correctAnswer, setCorrectAnswer] = useState<boolean>(false);
     const navigate = useNavigate();
     const popupHandleOpen = () => {
         navigate("/popupend");
     }
+    const handleAnswer = async (  questionId: string, answer: string,) => {
+        const response = await SendQuestion( gameId, questionId, answer); 
+        console.log(response)
+        setResult(response.res)
+        setCorrectAnswer(response.res.correct)
+        setTimeout(() => {
+        if(response.res.gameOver === true){
+            navigate("/popupend")
+        }
+        else{
+            
+            setObject(response.res.nextQuestion)
+           
+        }
+    }, 3000);
+    }
+
 
     const handleStart = async () => {
         const result = await Start()
         console.log(result)
-        { result.success ? setObject(result.start) : console.error(result.message) }
+        setGameId(result.start.gameId)
+        { result.success  ? setObject(result.start.question) : console.error(result.message) }
     }
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) navigate("/login");
-        else handleStart()
-
-    }, []);
+        if(!object) handleStart()
+    }, [object]);
 
 
 
@@ -43,10 +64,10 @@ const QuizPage: React.FC = () => {
                     <img src={logo} alt="Logo" />
                 </div>
                 <div className={style.stats}>
-                    <Stat icon={trophy} title='Bodovi' color='#2559D2' number={object?.question.score || 0} />
-                    <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={200} />
+                    <Stat icon={trophy} title='Bodovi' color='#2559D2' number={result?.score || 0} />
+                    <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={result?.bestScore|| 0} />
                     <Stat className={style.hiddenStat} icon={star} title="Streak" color="#EA4335" number={2} />
-                    <Stat icon={clock} color="#9747FF" number={object?.question.timeLimit} />
+                    <Stat icon={clock} color="#9747FF" number={object?.timeLimit} />
                 </div>
                 <div className={style.body}>
                     <div className={style.bodyUpper}>
@@ -61,7 +82,7 @@ const QuizPage: React.FC = () => {
                     </div>
                     <div className={style.question}>
                         <div className={style.questionText}>
-                            <h1>{object?.question.title}</h1>
+                            <h1>{object?.title}</h1>
                         </div>
                         <div className={style.progres}>
                             <div className={style.progresBar}></div>
@@ -69,10 +90,10 @@ const QuizPage: React.FC = () => {
                     </div>
                     <div className={style.answersWrap}>
                         <div className={style.answers}>
-                            {object.question.options.map((answer: any, i: number) => {
+                            {object.options.map((answer: any, i: number) => {
                                 return(
 
-                                                               <Answer key={i} iconLetter={String.fromCharCode(65 + i)} txt={answer.text} gameId={object.gameId} questionId={object.question._id} />
+                                  <Answer className={correctAnswer ? "green" : "red"} key={i} iconLetter={String.fromCharCode(65 + i)} txt={answer.text} onClick={() => handleAnswer( object._id, answer.text)} />
                                 )
      
                             })}

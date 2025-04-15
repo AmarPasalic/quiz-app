@@ -15,11 +15,12 @@ const SendQuestion = async (gameId:string, questionId:string,answer:string) => {
                 "gameId": gameId,
                 "questionId": questionId,
                 "answer": answer
-            })
+            }),
         }
     )
+   
     const data = await response.json();
-
+    
     if (!response.ok) {
         return { success: false, message: data.message || "Error sending question" };
     }
