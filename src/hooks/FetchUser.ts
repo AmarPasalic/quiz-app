@@ -1,0 +1,30 @@
+
+
+const FetchUser = async() => {
+    try {
+        const token = localStorage.getItem("token");
+        const response = await fetch(
+            "/api/auth/profile",
+            {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        )
+        const data = await response.json();
+
+        if (!response.ok) {
+            return { success: false, message: data.message || "Error fetching user" };
+        }
+
+        return { success: true, user: data };
+    }
+    catch (error) {
+        console.error("Error fetching user:", error);
+        return { success: false, message: "Network error" };
+    }
+}
+
+export default FetchUser

@@ -12,10 +12,25 @@ import Userpp from "../assets/images/pp.svg";
 import  useAuth  from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import LeaderboardFetch from "../hooks/LeaderboardFetch";
+import FetchUser from "../hooks/FetchUser";
+import { useState } from "react";
+
+
 const Home: React.FC = () => {
   const isLogged = useAuth();
   const navigate = useNavigate();
   const [leaderboard, setLeaderboard] = React.useState<any[]>([]);
+  const [user, setUser] = useState<any>(null);
+const fetchUser = async () => {
+  try{
+   const response = await FetchUser();
+   console.log(response)
+   setUser(response.user)
+  }
+  catch (error) {
+    console.error("Error fetching user data:", error);
+  }
+}
 
   React.useEffect(() => {
     const fetchLeaderboard = async () => {
@@ -29,6 +44,7 @@ const Home: React.FC = () => {
       }
     };
     fetchLeaderboard();
+    fetchUser();
   }, []);
 
   const popupHandleOpen = () => {
@@ -119,17 +135,17 @@ const Home: React.FC = () => {
           <div className="user" >
                 <div className="userInfo">
                   <div className="userPlace">
-                    <p>#6</p>
+                    <p></p>
                   </div>
                   <div className="userPp">
                     <img src={Userpp} alt="User Profile Picture" />
                   </div>
                   <div className="userName">
-                    <h2>Jamin Fajkic</h2>
+                    <h2>{user?.username|| ""}</h2>
                   </div>
                 </div>
                 <div className="userScore">
-                  <p>150 bodova</p>
+                  <p>{user?.bestScore || 0} bodova</p>
                 </div>
               </div>
             </div>

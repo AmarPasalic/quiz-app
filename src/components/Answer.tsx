@@ -10,11 +10,10 @@ interface Props{
 
 
 const Answer:React.FC <Props>= ({iconLetter,txt, onClick, className}) => {
- 
-   const color= className
-    
-  return (
-    <div onClick={onClick} className={ style.answer + " " + style[color]}>
+
+  
+ return (
+<div onClick={onClick} className={`${style.answer} ${className ? style[className] : ""}`}>
         <div className={style.answerIcon}>
             <div className={style.answerCirc}>
                 <h5>{iconLetter}</h5>

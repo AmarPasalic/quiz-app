@@ -14,26 +14,38 @@ const Signup: React.FC = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-   const navigate = useNavigate();
-    const handleRegister = async () => {
-        if (password !== confirmPassword) {
-            setError('Passwordi se ne poklapaju');
-            return;
-        }
-     if(email === '' || username === '' || password === '' || confirmPassword === ''){
-        setError('Molimo popunite sva polja')
-     }
-     const result =  await  createUser(email, password,username );
-     {!result.success && setError(result.message)}
-     if(result.success){
-        setError('')
-        setEmail('')
-        setUsername('')
-        setPassword('')
-        setConfirmPassword('')
-        navigate("/home")
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(false);
 
-     }
+
+    const handleRegister = async () => {
+        setLoading(true)
+        try {
+            if (password !== confirmPassword) {
+                setError('Passwordi se ne poklapaju');
+                return;
+            }
+            if (email === '' || username === '' || password === '' || confirmPassword === '') {
+                setError('Molimo popunite sva polja')
+            }
+            const result = await createUser(email, password, username);
+            { !result.success && setError(result.message) }
+            if (result.success) {
+                setError('')
+                setEmail('')
+                setUsername('')
+                setPassword('')
+                setConfirmPassword('')
+                navigate("/home")
+
+            }
+        }
+        catch (error: any) {
+            { error?.message && setError(error.message) }
+        }
+        finally {
+             setLoading(false)
+        }
     }
     return (
         <div className={styles.container}>
@@ -42,7 +54,7 @@ const Signup: React.FC = () => {
             </div>
             <div className={styles.formDiv}>
                 <div className={styles.logo}>
-                    <img onClick={()=>navigate("/home")} src={logo} alt="Logo" />
+                    <img onClick={() => navigate("/home")} src={logo} alt="Logo" />
                 </div>
                 <div className={styles.title}>
                     <h1>Registujte se na Quiz BiH</h1>
@@ -54,14 +66,14 @@ const Signup: React.FC = () => {
                     <input value={password} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' />
                     <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} type='password' placeholder='Ponovite password' />
                 </div>
-               {error && <p className={styles.error}>{error}</p>}
-                <Button onClick={handleRegister} text="Registruj se" />
+                {error && <p className={styles.error}>{error}</p>}
+                <Button loading={loading} onClick={handleRegister} text="Registruj se" />
                 <div className={styles.footer}>
                     <p>Vec imate racun?       </p>
-          <Link to="/login">Prijavi se </Link>
+                    <Link to="/login">Prijavi se </Link>
 
+                </div>
             </div>
-        </div>
         </div >
     )
 }

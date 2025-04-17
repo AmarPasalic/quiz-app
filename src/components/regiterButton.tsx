@@ -4,11 +4,12 @@ interface Props {
     text: string,
     onClick: () => void,
 className?: string,
+loading?: boolean
 }
-const regiterButton: React.FC<Props> = ({ text, onClick , className}) => {
+const regiterButton: React.FC<Props> = ({ text, onClick , className, loading}) => {
     return (
         <div onClick={onClick} className={ className||styles.button}>
-            <h1>{text}</h1>
+            <h1>{loading ? "..." : text}</h1>
         </div>
     )
 }
