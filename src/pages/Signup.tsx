@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../styles/signup.module.css'
 import logo from '../assets/images/Quiz BiH.svg'
-import mainImg from '../assets/images/Frame 45.svg'
+import video from "../assets/videos/mostar.mp4"
 import Button from "../components/regiterButton"
 import createUser from "../hooks/userRegister"
 import { useState } from 'react';
@@ -49,8 +49,10 @@ const Signup: React.FC = () => {
     }
     return (
         <div className={styles.container}>
-            <div className={styles.imageDiv}>
-                <img src={mainImg} alt="Main Image" />
+            <div className={styles.video}>
+                <video autoPlay loop muted>
+                    <source src={video} type="video/mp4" />
+                </video>
             </div>
             <div className={styles.formDiv}>
                 <div className={styles.logo}>

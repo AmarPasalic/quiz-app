@@ -9,37 +9,47 @@ import pic2 from "../assets/images/card-2.png";
 import pic3 from "../assets/images/card-3.png";
 import Card from "../components/Cards";
 import Userpp from "../assets/images/pp.svg";
-import  useAuth  from "../hooks/useAuth";
+import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import LeaderboardFetch from "../hooks/LeaderboardFetch";
 import FetchUser from "../hooks/FetchUser";
 import { useState } from "react";
-
+import Popup from "./Popup";
 
 const Home: React.FC = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const isLogged = useAuth();
   const navigate = useNavigate();
   const [leaderboard, setLeaderboard] = React.useState<any[]>([]);
   const [user, setUser] = useState<any>(null);
-const fetchUser = async () => {
-  try{
-   const response = await FetchUser();
-   console.log(response)
-   setUser(response.user)
+  const fetchUser = async () => {
+    try {
+      const response = await FetchUser();
+      console.log(response)
+      setUser(response.user)
+    }
+    catch (error) {
+      console.error("Error fetching user data:", error);
+    }
   }
-  catch (error) {
-    console.error("Error fetching user data:", error);
-  }
-}
+  React.useEffect(() => {
+    console.log("State", isOpen)
+    if (isOpen) {
+    document.body.style.setProperty("overflow", "hidden", "important");
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    console.log("Body overflow:", document.body.style.overflow);
+  }, [isOpen])
 
   React.useEffect(() => {
     const fetchLeaderboard = async () => {
       const result = await LeaderboardFetch();
       if (result.success) {
-       
+
         setLeaderboard(result.leaderboard || []);
       }
-      else{
+      else {
         console.error(result.message);
       }
     };
@@ -49,14 +59,15 @@ const fetchUser = async () => {
 
   const popupHandleOpen = () => {
     if (!isLogged) {
-       navigate("/login");
-       return;
-     }
-    navigate("/popup");
+      navigate("/login");
+      return;
+    }
+    setIsOpen((prev) => !prev);
   };
 
   return (
-    <div id="home"  className="container">
+    <div id="home" className="container">
+      {isOpen && <Popup onClick={popupHandleOpen} />}
       <div className="mainWrapper">
         <div className="main">
           <div className="mainTxt">
@@ -92,14 +103,14 @@ const fetchUser = async () => {
                   U našem kvizu, jednostavno je izazvati sebe i druge! Odaberite kviz, odgovorite na pitanja u zadanom vremenu i osvojite što više tačnih odgovora. Na kraju, možete provjeriti svoj rezultat i uporediti se sa najboljima na leaderboardu. Brzo, zabavno i edukativno!
                 </p>
               </div>
-              
+
             </div>
             <Button text="Započni kviz" onClick={popupHandleOpen} className="CardBtn" />
           </div>
           <div className="cards">
-            <Card title="Prijavi se" desc="Regidtruj se na Quiz Bih" image={pic1} onClick={() => {}} />
-            <Card  title="Uradi kviz" desc="Odgovori na sva pitanja koja imamo!" image={pic2} onClick={() => {}} />
-            <Card title="Budi 1#" desc="Osvoji ljestvicu i budi prvi" image={pic3} onClick={() => {}} />
+            <Card title="Prijavi se" desc="Regidtruj se na Quiz Bih" image={pic1} onClick={() => { }} />
+            <Card title="Uradi kviz" desc="Odgovori na sva pitanja koja imamo!" image={pic2} onClick={() => { }} />
+            <Card title="Budi 1#" desc="Osvoji ljestvicu i budi prvi" image={pic3} onClick={() => { }} />
           </div>
         </div>
       </div>
@@ -112,7 +123,7 @@ const fetchUser = async () => {
             <Whitebutton txt="Započni kviz" redirect={popupHandleOpen} />
           </div>
           <div className="leaderBoard">
-            {leaderboard.slice(0,5).map((element, index) => (
+            {leaderboard.slice(0, 5).map((element, index) => (
               <div className="user" key={index}>
                 <div className="userInfo">
                   <div className="userPlace">
@@ -131,24 +142,27 @@ const fetchUser = async () => {
               </div>
             ))}
           </div>
-          <div className="secondUser">
-          <div className="user" >
-                <div className="userInfo">
-                  <div className="userPlace">
-                    <p></p>
-                  </div>
-                  <div className="userPp">
-                    <img src={Userpp} alt="User Profile Picture" />
-                  </div>
-                  <div className="userName">
-                    <h2>{user?.username|| ""}</h2>
-                  </div>
+          {user ? (<div className="secondUser">
+            <div className="user" >
+              <div className="userInfo">
+                <div className="userPlace">
+                  <p></p>
                 </div>
-                <div className="userScore">
-                  <p>{user?.bestScore || 0} bodova</p>
+                <div className="userPp">
+                  <img src={Userpp} alt="User Profile Picture" />
+                </div>
+                <div className="userName">
+                  <h2>{user?.username || ""}</h2>
                 </div>
               </div>
+              <div className="userScore">
+                <p>{user?.bestScore || 0} bodova</p>
+              </div>
             </div>
+          </div>) : (
+            <></>
+          )}
+
         </div>
       </div>
     </div>

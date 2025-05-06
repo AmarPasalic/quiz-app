@@ -1,10 +1,12 @@
 .container {
-    overflow: hidden;
+    
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .imageDiv {
@@ -20,14 +22,22 @@
     height: 100%;
     object-fit: cover;
 }
+.video{
+width: 100vw;
+position: absolute;
+z-index: -2;
+}
 
 .formDiv {
     width: 35%;
-    height: 100%;
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    gap: 20px;
 }
 
 .title {
@@ -70,7 +80,7 @@
     height: 10%;
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .divider p {
@@ -85,7 +95,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .form input {

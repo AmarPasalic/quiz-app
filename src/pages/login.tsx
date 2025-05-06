@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/login.module.css";
-import mainImg from "../assets/images/Frame 35.svg";
+import video from "../assets/videos/mostar.mp4"
 import logo from "../assets/images/Quiz BiH.svg";
 import Button from "../components/regiterButton";
 import GButton from "../components/authButton"
@@ -43,8 +43,10 @@ const Login: React.FC = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.imageDiv}>
-                <img src={mainImg} alt="Main Image" />
+            <div className={styles.video}>
+                <video autoPlay loop muted>
+                    <source src={video} type="video/mp4" />
+                </video>
             </div>
             <div className={styles.formDiv}>
                 <div className={styles.logo}>
@@ -54,8 +56,8 @@ const Login: React.FC = () => {
                     <h1>Prijavite se na vaš račun</h1>
                     <p>Unesite informacije za prijavu</p>
                 </div>
-                <GButton providerImg={providerImg} providerName="Google" onClick={() => console.log("ee")} />
-                <div className={styles.divider}><p>ili</p></div>
+
+              
                 <div className={styles.form}>
                     <input onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Email' />
                     <input onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' />
