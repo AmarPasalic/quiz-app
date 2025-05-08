@@ -34,7 +34,7 @@ const Popup: React.FC<PopupProps> = ({ onClick }) => {
                 <div className={styles.title}>
                     <h1>Spremite se za kviz !</h1>
                 </div>
-                <div className={styles.txt}>
+                <div className={styles.txt1}>
                     <p>Pažljivo birajte odgovore i pokušajte osvojiti što više bodova prije nego istekne</p>
                 </div>
                 <div className={styles.cards}>

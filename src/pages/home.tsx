@@ -33,14 +33,21 @@ const Home: React.FC = () => {
     }
   }
   React.useEffect(() => {
-    console.log("State", isOpen)
+    console.log("State", isOpen);
     if (isOpen) {
-    document.body.style.setProperty("overflow", "hidden", "important");
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // Smooth scrolling
+      });
+      document.querySelectorAll("*").forEach((el) => {
+        (el as HTMLElement).style.setProperty("overflow", "hidden", "important");
+      });
     } else {
-      document.body.style.overflow = "auto";
+      document.querySelectorAll("*").forEach((el) => {
+        (el as HTMLElement).style.setProperty("overflow", "auto", "important");
+      });
     }
-    console.log("Body overflow:", document.body.style.overflow);
-  }, [isOpen])
+  }, [isOpen]);
 
   React.useEffect(() => {
     const fetchLeaderboard = async () => {
