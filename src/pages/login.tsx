@@ -3,8 +3,6 @@ import styles from "../styles/login.module.css";
 import video from "../assets/videos/mostar.mp4"
 import logo from "../assets/images/Quiz BiH.svg";
 import Button from "../components/regiterButton";
-import GButton from "../components/authButton"
-import providerImg from "../assets/images/icons8-google.svg"
 import login from "../hooks/userLogin"
 import { useState } from "react";
 import { Link } from "react-router-dom";

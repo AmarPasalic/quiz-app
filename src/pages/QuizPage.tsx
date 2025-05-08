@@ -21,6 +21,32 @@ const QuizPage: React.FC = () => {
     const [isAnswering, setIsAnswering] = useState<boolean>(false);
     const [className, setClassName] = useState<string>("")
     const navigate = useNavigate();
+    const [time, setTime] = useState<number>(0);
+    const timer = (time: number) => {
+        if(time>0){
+   setTimeout(() => {
+        
+            setTime(time - 1);
+            timer(time - 1)
+       
+      
+   }, 1000)
+}
+else{
+    handleAnswer(object._id, "")}
+    }
+
+    const handleClose = () => {
+        setObject(null)
+        setResult(null)
+        setGameId("")
+        setAnswertxt("")
+        setUser(null)
+        setIsAnswering(false)
+        setClassName("")
+        setTime(0)
+    }
+
 const fetchUser = async () => {
     try{
      const response = await FetchUser();
@@ -46,12 +72,15 @@ const fetchUser = async () => {
 
         setClassName(response.res.correct ? "green" : "red")
         setTimeout(() => {
-            if (response.res.gameOver === true) {
+            if (response.res.gameOver === true || !response.res.nextQuestion) {
                  popupHandleOpen()
+                 handleClose()
             }
             else {
             if(response.res.nextQuestion){
                 setObject(response.res.nextQuestion)
+                setTime(response.res.nextQuestion.timeLimit)
+                timer(response.res.nextQuestion.timeLimit)
             }
             else{
                 setObject(response.res)
@@ -67,7 +96,15 @@ const fetchUser = async () => {
         const result = await Start()
         console.log(result)
         setGameId(result.start.gameId)
-        { result.success ? setObject(result.start.question) : console.error(result.message) }
+        if(result.success){
+            setObject(result.start.question)
+            setTime(result.start.question.timeLimit)
+            timer(result.start.question.timeLimit)
+        }
+        else{
+            console.error(result.message)
+        }
+    
     }
 
     useEffect(() => {
@@ -97,7 +134,7 @@ return (
                 <Stat icon={trophy} title='Bodovi' color='#2559D2' number={result?.score || 0} />
                 <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={user?.bestScore || 0} />
                 <Stat className={style.hiddenStat} icon={star} title="Streak" color="#EA4335" number={result?.score || 0} />
-                <Stat icon={clock} color="#9747FF" number={object?.timeLimit} />
+                <Stat icon={clock} color="#9747FF" number={time||0} />
             </div>
             <div className={style.body}>
                 <div className={style.bodyUpper}>
