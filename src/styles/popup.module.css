@@ -66,6 +66,29 @@
     gap: 0.25rem;
 }
 
+.stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.stats p {
+    color: rgba(0, 0, 0, 0.60);
+    font-family: "Steradian TRIAL";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.stats span {
+    color: #000;
+    font-family: "Steradian TRIAL";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
 .card {
     width: 100%;
     display: flex;

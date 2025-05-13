@@ -12,6 +12,9 @@ import Start from "../hooks/Start"
 import { useEffect, useState } from 'react'
 import SendQuestion from '../hooks/SendQuestion'
 import FetchUser from '../hooks/FetchUser'
+import Popup from "../components/PopupClose"
+
+
 const QuizPage: React.FC = () => {
     const [object, setObject] = useState<any>(null);
     const [result, setResult] = useState<any>(null);
@@ -22,19 +25,20 @@ const QuizPage: React.FC = () => {
     const [className, setClassName] = useState<string>("")
     const navigate = useNavigate();
     const [time, setTime] = useState<number>(0);
-    const timer = (time: number) => {
-        if(time>0){
-   setTimeout(() => {
-        
-            setTime(time - 1);
-            timer(time - 1)
+    const [popup, setPopup] = useState<boolean>(false)
+
+
+    useEffect(() => {
+          if(time > 0) {
+                setTimeout(() => {
+                  setTime(time -1);   
+                }, 1000);
+            }
+            else {
+                handleAnswer(object._id, "")
+            }
        
-      
-   }, 1000)
-}
-else{
-    handleAnswer(object._id, "")}
-    }
+    }, [time]);
 
     const handleClose = () => {
         setObject(null)
@@ -47,69 +51,77 @@ else{
         setTime(0)
     }
 
-const fetchUser = async () => {
-    try{
-     const response = await FetchUser();
-     setUser(response.user)
-    
+    const fetchUser = async () => {
+        try {
+            const response = await FetchUser();
+            setUser(response.user)
+
+        }
+        catch (error) {
+            console.error("Error fetching user data:", error);
+        }
     }
-    catch (error) {
-      console.error("Error fetching user data:", error);
-    }
-}
 
     const popupHandleOpen = () => {
-        const finalScore = result?.score || 0;
-        localStorage.setItem("finalScore", finalScore.toString());
-        navigate("/popupend");
+        setPopup((prev) => !prev);
     }
     const handleAnswer = async (questionId: string, answer: string,) => {
         if (isAnswering) return;
-        setIsAnswering(true);
-        setAnswertxt(answer)
-        const response = await SendQuestion(gameId, questionId, answer);
-        setResult(response.res)
+       setIsAnswering(true);
 
-        setClassName(response.res.correct ? "green" : "red")
-        setTimeout(() => {
-            if (response.res.gameOver === true || !response.res.nextQuestion) {
-                 popupHandleOpen()
-                 handleClose()
-            }
-            else {
-            if(response.res.nextQuestion){
-                setObject(response.res.nextQuestion)
-                setTime(response.res.nextQuestion.timeLimit)
-                timer(response.res.nextQuestion.timeLimit)
-            }
-            else{
-                setObject(response.res)
-            }
-            }
-            setIsAnswering(false);
-            setClassName("")
-        }, 3000);
+        const response = await SendQuestion(gameId, questionId, answer);
+        if (!response.res) {
+            popupHandleOpen()
+            handleClose()
+            return
+        }
+        else {
+            setResult(response.res)
+            setAnswertxt(answer)
+            setTime(0)
+            setClassName(response.res.correct ? "green" : "red")
+            setTimeout(() => {
+                if (response.res.gameOver === true || !response.res.nextQuestion) {
+                    popupHandleOpen()
+                    handleClose()
+                }
+                else {
+                    if (response.res.nextQuestion) {
+                        setObject(response.res.nextQuestion)
+                        setTime(response.res.nextQuestion.timeLimit)
+                    }
+                    else {
+                        setObject(response.res)
+                    }
+                }
+                setIsAnswering(false);
+                setClassName("")
+            }, 2000);
+        }
     }
 
 
     const handleStart = async () => {
         const result = await Start()
-        console.log(result)
         setGameId(result.start.gameId)
-        if(result.success){
+        if (result.success) {
+            console.log(result.start.question)
             setObject(result.start.question)
             setTime(result.start.question.timeLimit)
-            timer(result.start.question.timeLimit)
+           
         }
-        else{
+        else {
             console.error(result.message)
         }
-    
+
     }
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (!token) navigate("/login");
+        if (!token) {
+            navigate("/login");
+            return;
+        }
         if (!object) handleStart()
         fetchUser()
     }, [object]);
@@ -124,55 +136,57 @@ const fetchUser = async () => {
         )
     }
 
-return (
-    <div className={style.quizContainer}>
-        <div className={style.quizWrapper}>
-            <div className={style.logo}>
-                <img src={logo} alt="Logo" />
-            </div>
-            <div className={style.stats}>
-                <Stat icon={trophy} title='Bodovi' color='#2559D2' number={result?.score || 0} />
-                <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={user?.bestScore || 0} />
-                <Stat className={style.hiddenStat} icon={star} title="Streak" color="#EA4335" number={result?.score || 0} />
-                <Stat icon={clock} color="#9747FF" number={time||0} />
-            </div>
-            <div className={style.body}>
-                <div className={style.bodyUpper}>
-                    <div className={style.text}>
-                        <div className={style.questionNum}>
-                            <p>Pitanje {result?.bestScore || 0} od 20</p>
+    return (
+
+        <div className={style.quizContainer}>
+            {popup && <Popup score={result.score} />}
+            <div className={style.quizWrapper}>
+                <div className={style.logo}>
+                    <img src={logo} alt="Logo" />
+                </div>
+                <div className={style.stats}>
+                    <Stat icon={trophy} title='Bodovi' color='#2559D2' number={result?.score || 0} />
+                    <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={user?.bestScore || 0} />
+                    <Stat className={style.hiddenStat} icon={star} title="Streak" color="#EA4335" number={result?.score || 0} />
+                    <Stat icon={clock} color="#9747FF" number={time || 0} />
+                </div>
+                <div className={style.body}>
+                    <div className={style.bodyUpper}>
+                        <div className={style.text}>
+                            <div className={style.questionNum}>
+                                <p>Pitanje {result?.bestScore || 0} od 20</p>
+                            </div>
+                            <div onClick={popupHandleOpen} className={style.Button1}>
+                                <p>Zavrsi kviz</p>
+                            </div>
                         </div>
-                        <div onClick={popupHandleOpen} className={style.Button1}>
-                            <p>Zavrsi kviz</p>
+                    </div>
+                    <div className={style.question}>
+                        <div className={style.questionText}>
+                            <h1>{object?.title}</h1>
+                        </div>
+                        <div className={style.progres}>
+                            <div className={style.progresBar}></div>
                         </div>
                     </div>
-                </div>
-                <div className={style.question}>
-                    <div className={style.questionText}>
-                        <h1>{object?.title}</h1>
+                    <div className={style.answersWrap}>
+                        <div className={style.answers}>
+                            {object.options.map((answer: any, i: number) => {
+                                return (
+
+                                    <Answer className={answerTxt === answer.text ? className : undefined} key={i} iconLetter={String.fromCharCode(65 + i)} txt={answer.text} onClick={() => handleAnswer(object._id, answer.text)} />
+                                )
+
+                            })}
+
+
+                        </div>
                     </div>
-                    <div className={style.progres}>
-                        <div className={style.progresBar}></div>
-                    </div>
+
                 </div>
-                <div className={style.answersWrap}>
-                    <div className={style.answers}>
-                        {object.options.map((answer: any, i: number) => {
-                            return (
-
-                                <Answer className={answerTxt === answer.text ? className : undefined} key={i} iconLetter={String.fromCharCode(65 + i)} txt={answer.text} onClick={() => handleAnswer(object._id, answer.text)} />
-                            )
-
-                        })}
-
-
-                    </div>
-                </div>
-
             </div>
         </div>
-    </div>
-)
+    )
 }
 
 export default QuizPage

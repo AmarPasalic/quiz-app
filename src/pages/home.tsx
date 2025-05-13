@@ -37,7 +37,7 @@ const Home: React.FC = () => {
     if (isOpen) {
       window.scrollTo({
         top: 0,
-        behavior: "smooth", // Smooth scrolling
+       
       });
       document.querySelectorAll("*").forEach((el) => {
         (el as HTMLElement).style.setProperty("overflow", "hidden", "important");
