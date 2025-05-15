@@ -7,7 +7,7 @@ interface Props{
 }
 const Whitebutton: React.FC<Props> = ({txt, redirect, className}) => {
   return (
-    <div onClick={redirect} className={className ? styles[className] : styles.button}>
+    <div onClick={redirect} className={className ? styles[className] : styles.button22}>
       <h1>{txt}</h1>
     </div>
   )

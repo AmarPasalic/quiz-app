@@ -249,8 +249,8 @@
     }
 
     .quizWrapper {
-        width: 90%;
-        height: 80%;
+        width: 80%;
+        height: 90%;
         justify-content: space-around;
     }
 
@@ -262,7 +262,9 @@
     .hiddenStat {
         display: none !important;
     }
-
+ .progres{
+    width: 80%;
+}
     .stat h1 {
         font-size: 0px !important;
     }
@@ -291,10 +293,14 @@
     }
 
     .questionText h1 {
-        font-size: 10px;
-        line-height: 100%;
-        overflow: hidden;
+        color: #000;
+
         text-align: center;
+        font-family: "Steradian TRIAL";
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
     }
 
     .answers {

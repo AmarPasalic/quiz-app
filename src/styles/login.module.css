@@ -163,7 +163,11 @@
 
 @media (max-width: 768px) {
     .container {
-        background-color: transparent;
+        background-color: white;
+    }
+
+    .video {
+        display: none;
     }
 
     .formDiv {
@@ -171,13 +175,11 @@
         height: 100vh;
         border-radius: 0;
         background-color: rgba(255, 255, 255, 0.95);
-        padding: 24px;
         box-sizing: border-box;
     }
 
     .logo {
-        width: auto;
-        margin-bottom: 48px;
+        width: 80%;
     }
 
     .logo img {
@@ -185,38 +187,29 @@
     }
 
     .title {
-        width: 100%;
-        margin-bottom: 32px;
+        width: 80%;
     }
 
     .title h1 {
         font-size: 24px;
-        line-height: 1.2;
+   
     }
 
     .title p {
         font-size: 14px;
-        margin-top: 8px;
+
     }
 
     .form {
         gap: 24px;
-        margin-bottom: 24px;
+
     }
 
     .form input {
         font-size: 16px;
     }
 
-    .reset {
-        margin: 8px 0 24px 0;
-    }
 
-    .button {
-        margin-bottom: 24px;
-    }
 
-    .footer {
-        margin-top: auto;
-    }
+
 }

@@ -102,6 +102,25 @@
 
 }
 
+.button22{
+    width: 43%;
+    aspect-ratio: 3/1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.button22 h1{
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0%;
+    color: #2559D2;
+}
+
+
+
 .buttons {
     width: 90%;
     padding-top: 2rem;
@@ -117,13 +136,16 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    background-color: white;
 }
+
 
 .button h1 {
     font-size: 14px;
     font-weight: 500;
     line-height: 100%;
     letter-spacing: 0%;
+   
 }
 
 #btn1 {
@@ -134,4 +156,10 @@
 #btn2 {
     background-color: #2559D2;
     color: white;
+}
+
+@media (max-width: 768px){
+ .popupWrapper{
+    width: 100%;
+ }   
 }
