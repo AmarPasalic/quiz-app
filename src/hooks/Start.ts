@@ -3,7 +3,7 @@ const Start = async () => {
     try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-            "/api/game/start",
+            "https://quiz-be-zeta.vercel.app/game/start",
             {
                 method: "POST",
                 headers: {

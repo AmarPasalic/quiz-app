@@ -3,7 +3,7 @@
 const LeaderboardFetch = async () => {
     try {
         const response = await fetch(
-            "/api/leaderboard",
+            "https://quiz-be-zeta.vercel.app/leaderboard",
             {
                 method: "GET",
                 headers: {
@@ -17,7 +17,7 @@ const LeaderboardFetch = async () => {
             return { success: false, message: data.message || "Error fetching leaderboard" };
         }
 
-        return { success: true, leaderboard: data};
+        return { success: true, leaderboard: data };
     } catch (error) {
         console.error("Error fetching leaderboard:", error);
         return { success: false, message: "Network error" };

@@ -158,12 +158,13 @@ body {
     align-items: center;
     background-color: #2559D2;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .button h1 {
     color: #ffff;
     font-size: 20px;
-    
+    margin: 0;
 }
 
 .footer {
@@ -405,10 +406,12 @@ body {
     align-items: center;
     overflow: hidden;
 }
-.userName{
+
+.userName {
     min-width: 40%;
-    
+
 }
+
 .userInfo p {
     font-size: 16px;
     font-weight: 400;
@@ -496,7 +499,7 @@ body {
         height: 41px;
         overflow: hidden;
     }
-  
+
     .button h1 {
         font-size: 16px;
     }
@@ -505,7 +508,7 @@ body {
         display: none;
     }
 
-  
+
 
     .cardsContainer {
         justify-content: space-between;
@@ -541,19 +544,40 @@ body {
     }
 
     .cards {
-        display: block;
-        overflow: hidden;
+        width: 100%;
         height: 70%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+        overflow: visible;
     }
 
     .card {
-        width: 90%;
-        height: 100%;
-
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
     }
 
-    .cards {
-        overflow: hidden;
+    .card:not(:first-child) {
+        display: none;
+    }
+
+    .card-content {
+        width: 80%;
+        height: 30%;
+    }
+
+
+
+    .cardTxt h2 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    .cardTxt p {
+        font-size: 16px;
+        opacity: 0.8;
     }
 
     .leaderWrapper {
@@ -613,7 +637,8 @@ body {
         display: flex;
         gap: 10px;
     }
-    .secondUser{
+
+    .secondUser {
         width: 90%;
     }
 

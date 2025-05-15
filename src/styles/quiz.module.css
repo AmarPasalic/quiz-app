@@ -6,26 +6,35 @@
     justify-content: center;
     background-color: #faf9fc;
 }
-.loading{
+
+.loading {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid #f3f3f3;
+    /* Light grey */
+    border-top: 16px solid #3498db;
+    /* Blue */
     border-radius: 50%;
     width: 120px;
     height: 120px;
     animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 
 .quizWrapper {
     width: 70%;
@@ -57,7 +66,7 @@
     align-items: center;
 }
 
-.hiddenStat{
+.hiddenStat {
     display: flex;
 }
 
@@ -154,9 +163,10 @@
 }
 
 .progresBar {
-    width: 30%;
+    width: 100%;
     height: 100%;
     background-color: #2559D2;
+    transition: width 1s linear;
 }
 
 .answersWrap {
@@ -216,10 +226,12 @@
     font-weight: 400;
     line-height: 20.8px;
 }
+
 .green {
     background-color: #4CAF50 !important;
     color: white !important;
 }
+
 .red {
     background-color: #F44336 !important;
 }
@@ -238,23 +250,25 @@
 
     .quizWrapper {
         width: 90%;
-      height: 80%;
-      justify-content: space-around;
+        height: 80%;
+        justify-content: space-around;
     }
 
     .stats {
-        height: 45,4px;
+        height: 45, 4px;
         overflow: hidden;
     }
 
     .hiddenStat {
         display: none !important;
     }
-    .stat h1{
-       font-size: 0px!important;
+
+    .stat h1 {
+        font-size: 0px !important;
     }
-    .stat span{
-        font-size: 16px!important;
+
+    .stat span {
+        font-size: 16px !important;
     }
 
     .questionNum p {
@@ -290,8 +304,7 @@
 
     .answer {
         width: 100%;
-        gap: 20px
-        ;
+        gap: 20px;
         height: auto;
     }
 

@@ -1,4 +1,4 @@
-const fetchData = async (url: string="/api/users", meth: string="GET", body?: object) => {
+const fetchData = async (url: string="https://quiz-be-zeta.vercel.app/users", meth: string="GET", body?: object) => {
   const token = localStorage.getItem("token")
 if(body === undefined && meth !== "GET"){
 return console.error( "Body is required");

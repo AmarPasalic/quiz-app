@@ -1,10 +1,10 @@
 
 
-const FetchUser = async() => {
+const FetchUser = async () => {
     try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-            "/api/auth/profile",
+            "https://quiz-be-zeta.vercel.app/auth/profile",
             {
                 method: "GET",
                 headers: {

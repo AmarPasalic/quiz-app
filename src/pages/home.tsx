@@ -8,7 +8,6 @@ import pic1 from "../assets/images/card-1.png";
 import pic2 from "../assets/images/card-2.png";
 import pic3 from "../assets/images/card-3.png";
 import Card from "../components/Cards";
-import Userpp from "../assets/images/pp.svg";
 import useAuth from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import LeaderboardFetch from "../hooks/LeaderboardFetch";
@@ -136,9 +135,7 @@ const Home: React.FC = () => {
                   <div className="userPlace">
                     <p>#{index + 1}</p>
                   </div>
-                  <div className="userPp">
-                    <img src={Userpp} alt="User Profile Picture" />
-                  </div>
+    
                   <div className="userName">
                     <h2>{element.username}</h2>
                   </div>
@@ -154,9 +151,6 @@ const Home: React.FC = () => {
               <div className="userInfo">
                 <div className="userPlace">
                   <p></p>
-                </div>
-                <div className="userPp">
-                  <img src={Userpp} alt="User Profile Picture" />
                 </div>
                 <div className="userName">
                   <h2>{user?.username || ""}</h2>

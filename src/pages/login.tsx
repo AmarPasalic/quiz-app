@@ -55,7 +55,7 @@ const Login: React.FC = () => {
                     <p>Unesite informacije za prijavu</p>
                 </div>
 
-              
+
                 <div className={styles.form}>
                     <input onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Email' />
                     <input onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' />

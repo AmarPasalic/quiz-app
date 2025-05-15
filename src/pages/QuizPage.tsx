@@ -26,19 +26,36 @@ const QuizPage: React.FC = () => {
     const navigate = useNavigate();
     const [time, setTime] = useState<number>(0);
     const [popup, setPopup] = useState<boolean>(false)
+    const [finalScore, setFinalScore] = useState<number>(0);
+    const [questionNumber, setQuestionNumber] = useState<number>(1);
 
 
     useEffect(() => {
-          if(time > 0) {
-                setTimeout(() => {
-                  setTime(time -1);   
-                }, 1000);
+        let intervalId: ReturnType<typeof setInterval>;
+
+        if (time > 0) {
+            intervalId = setInterval(() => {
+                setTime(prevTime => {
+                    if (prevTime <= 0) {
+                        clearInterval(intervalId);
+                        if (object?._id) {
+                            handleAnswer(object._id, "");
+                        }
+                        return 0;
+                    }
+                    return prevTime - 1;
+                });
+            }, 1000);
+        } else if (object?._id && time === 0) {
+            handleAnswer(object._id, "");
+        }
+
+        return () => {
+            if (intervalId) {
+                clearInterval(intervalId);
             }
-            else {
-                handleAnswer(object._id, "")
-            }
-       
-    }, [time]);
+        };
+    }, [time, object?._id]);
 
     const handleClose = () => {
         setObject(null)
@@ -49,6 +66,7 @@ const QuizPage: React.FC = () => {
         setIsAnswering(false)
         setClassName("")
         setTime(0)
+        setQuestionNumber(1)
     }
 
     const fetchUser = async () => {
@@ -63,39 +81,41 @@ const QuizPage: React.FC = () => {
     }
 
     const popupHandleOpen = () => {
+        setFinalScore(result?.score || 0);
         setPopup((prev) => !prev);
+        handleClose();
     }
     const handleAnswer = async (questionId: string, answer: string,) => {
         if (isAnswering) return;
-       setIsAnswering(true);
+        setIsAnswering(true);
 
         const response = await SendQuestion(gameId, questionId, answer);
         if (!response.res) {
-            popupHandleOpen()
-            handleClose()
-            return
+            setResult({ score: 0 }); // Set a default score when game ends
+            popupHandleOpen();
+            return;
         }
         else {
-            setResult(response.res)
-            setAnswertxt(answer)
-            setTime(0)
-            setClassName(response.res.correct ? "green" : "red")
+            setResult(response.res);
+            setAnswertxt(answer);
+            setTime(0);
+            setClassName(response.res.correct ? "green" : "red");
             setTimeout(() => {
                 if (response.res.gameOver === true || !response.res.nextQuestion) {
-                    popupHandleOpen()
-                    handleClose()
+                    popupHandleOpen();
                 }
                 else {
                     if (response.res.nextQuestion) {
-                        setObject(response.res.nextQuestion)
-                        setTime(response.res.nextQuestion.timeLimit)
+                        setObject(response.res.nextQuestion);
+                        setTime(response.res.nextQuestion.timeLimit);
+                        setQuestionNumber(prev => prev + 1);
                     }
                     else {
-                        setObject(response.res)
+                        setObject(response.res);
                     }
                 }
                 setIsAnswering(false);
-                setClassName("")
+                setClassName("");
             }, 2000);
         }
     }
@@ -108,7 +128,7 @@ const QuizPage: React.FC = () => {
             console.log(result.start.question)
             setObject(result.start.question)
             setTime(result.start.question.timeLimit)
-           
+            setQuestionNumber(1)
         }
         else {
             console.error(result.message)
@@ -139,7 +159,7 @@ const QuizPage: React.FC = () => {
     return (
 
         <div className={style.quizContainer}>
-            {popup && <Popup score={result.score} />}
+            {popup && <Popup score={finalScore} />}
             <div className={style.quizWrapper}>
                 <div className={style.logo}>
                     <img src={logo} alt="Logo" />
@@ -154,7 +174,7 @@ const QuizPage: React.FC = () => {
                     <div className={style.bodyUpper}>
                         <div className={style.text}>
                             <div className={style.questionNum}>
-                                <p>Pitanje {result?.bestScore || 0} od 20</p>
+                                <p>Pitanje {questionNumber} od 20</p>
                             </div>
                             <div onClick={popupHandleOpen} className={style.Button1}>
                                 <p>Zavrsi kviz</p>
@@ -166,7 +186,12 @@ const QuizPage: React.FC = () => {
                             <h1>{object?.title}</h1>
                         </div>
                         <div className={style.progres}>
-                            <div className={style.progresBar}></div>
+                            <div
+                                className={style.progresBar}
+                                style={{
+                                    width: `${(time / object.timeLimit) * 100}%`
+                                }}
+                            ></div>
                         </div>
                     </div>
                     <div className={style.answersWrap}>

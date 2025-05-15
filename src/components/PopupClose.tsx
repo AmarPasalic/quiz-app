@@ -9,8 +9,19 @@ interface PopupCloseProps {
 
 const PopupClose: React.FC<PopupCloseProps> = ({ score }) => {
    const navigate = useNavigate();
+
    const redirect = () => {
       navigate("/home");
+   };
+
+   const redirectToLeaderboard = () => {
+      navigate("/home#leaderboard");
+      setTimeout(() => {
+         const leaderboardSection = document.getElementById('leaderboard');
+         if (leaderboardSection) {
+            leaderboardSection.scrollIntoView({ behavior: 'smooth' });
+         }
+      }, 100);
    };
 
    return (
@@ -27,15 +38,15 @@ const PopupClose: React.FC<PopupCloseProps> = ({ score }) => {
                   <p>U prilogu pogledajte svoju statistiku :</p>
                </div>
                <div className={styles.stats}>
-                  <p>Osvojili ste: <span>{score||0} bodova</span></p>
-                  <img src={trophy}/>
+                  <p>Osvojili ste: <span>{score || 0} bodova</span></p>
+                  <img src={trophy} />
                </div>
 
                <div className={styles.buttons}>
                   <div id={styles.btn1} onClick={redirect} className={styles.button}>
                      <h1>Zatvori</h1>
                   </div>
-                  <div id={styles.btn2} className={styles.button}>
+                  <div id={styles.btn2} onClick={redirectToLeaderboard} className={styles.button}>
                      <h1>Leaderboard</h1>
                   </div>
                </div>

@@ -5,10 +5,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": {
-        target: "https://quiz-be-zeta.vercel.app/", // URL vašeg servera
-        changeOrigin: true, // Promeni origin u zahtevu
-        rewrite: (path) => path.replace(/^\/api/, ""), // Ukloni /api iz putanje
+      "https://quiz-be-zeta.vercel.app": {
+        target: "https://quiz-be-zeta.vercel.app/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^https:\/\/quiz-be-zeta\.vercel\.app/, ""),
       },
     },
   },
