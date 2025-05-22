@@ -169,6 +169,9 @@
     .video {
         display: none;
     }
+    .video video{
+        display: none;
+    }
 
     .formDiv {
         width: 100%;
@@ -192,7 +195,7 @@
 
     .title h1 {
         font-size: 24px;
-   
+
     }
 
     .title p {
