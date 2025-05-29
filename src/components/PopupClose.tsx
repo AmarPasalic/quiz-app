@@ -5,17 +5,22 @@ import styles from '../styles/popup.module.css';
 import trophy from "../assets/images/popuptrophy.svg"
 interface PopupCloseProps {
    score: number;
+   coins: number;
+   continueQuiz?: () => void;
+   endQuiz?: () => void;
 }
 
-const PopupClose: React.FC<PopupCloseProps> = ({ score }) => {
+const PopupClose: React.FC<PopupCloseProps> = ({ score, coins, continueQuiz , endQuiz}) => {
    const navigate = useNavigate();
 
    const redirect = () => {
       navigate("/home");
+      endQuiz?.();
    };
 
    const redirectToLeaderboard = () => {
       navigate("/home#leaderboard");
+      endQuiz?.();
       setTimeout(() => {
          const leaderboardSection = document.getElementById('leaderboard');
          if (leaderboardSection) {
@@ -46,9 +51,15 @@ const PopupClose: React.FC<PopupCloseProps> = ({ score }) => {
                   <div id={styles.btn1} onClick={redirect} className={styles.button}>
                      <h1>Zatvori</h1>
                   </div>
-                  <div id={styles.btn2} onClick={redirectToLeaderboard} className={styles.button}>
-                     <h1>Leaderboard</h1>
-                  </div>
+                  {coins >= 5 ? (
+                     <div id={styles.btn2} onClick={continueQuiz} className={styles.button}>
+                        <h1>Nastavi</h1>
+                     </div>
+                  ) : (
+                     <div id={styles.btn2} onClick={redirectToLeaderboard} className={styles.button}>
+                        <h1>Leaderboard</h1>
+                     </div>
+                  )}
                </div>
 
             </div>

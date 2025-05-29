@@ -1,11 +1,12 @@
 
-const FetchUser = async () => {
+
+const Revive = async() => {
     try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-            "https://quiz-be-zeta.vercel.app/auth/profile",
+            "https://quiz-be-zeta.vercel.app/game/revive",
             {
-                method: "GET",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -26,4 +27,4 @@ const FetchUser = async () => {
     }
 }
 
-export default FetchUser
+export default Revive

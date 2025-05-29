@@ -45,6 +45,23 @@ body {
     color: black;
 }
 
+.coinsNumber {
+    width: 4%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: space-between;
+}
+.coinsNumber img {
+    width: 24px;
+    height: 24px;
+}
+.coinsNumber p {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20.8px;
+}
+
 .navRegister {
     min-width: 20%;
     display: flex;

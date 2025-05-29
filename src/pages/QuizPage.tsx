@@ -3,8 +3,6 @@ import style from "../styles/quiz.module.css"
 import logo from "../assets/images/Quiz BiH.svg"
 import Stat from '../components/Stat'
 import trophy from "../assets/images/trophy.svg"
-import medal from "../assets/images/medal.svg"
-import star from "../assets/images/star.svg"
 import clock from "../assets/images/clock.svg"
 import Answer from '../components/Answer'
 import { useNavigate } from 'react-router-dom'
@@ -13,8 +11,8 @@ import { useEffect, useState } from 'react'
 import SendQuestion from '../hooks/SendQuestion'
 import FetchUser from '../hooks/FetchUser'
 import Popup from "../components/PopupClose"
-
-
+import coin from "../assets/images/coins-cash-svgrepo-com.svg"
+import Revive from '../hooks/Review'
 const QuizPage: React.FC = () => {
     const [object, setObject] = useState<any>(null);
     const [result, setResult] = useState<any>(null);
@@ -72,7 +70,9 @@ const QuizPage: React.FC = () => {
     const fetchUser = async () => {
         try {
             const response = await FetchUser();
+            setTime(response.user.time)
             setUser(response.user)
+            
 
         }
         catch (error) {
@@ -83,7 +83,7 @@ const QuizPage: React.FC = () => {
     const popupHandleOpen = () => {
         setFinalScore(result?.score || 0);
         setPopup((prev) => !prev);
-        handleClose();
+
     }
     const handleAnswer = async (questionId: string, answer: string,) => {
         if (isAnswering) return;
@@ -91,7 +91,7 @@ const QuizPage: React.FC = () => {
 
         const response = await SendQuestion(gameId, questionId, answer);
         if (!response.res) {
-            setResult({ score: 0 }); // Set a default score when game ends
+            setResult({ score: 0 }); 
             popupHandleOpen();
             return;
         }
@@ -135,7 +135,14 @@ const QuizPage: React.FC = () => {
         }
 
     }
-
+    
+    const revive = async() => {
+        const response = await Revive()
+        console.log(response)
+        if(response.success){
+          setUser(response.user)
+        }
+    }
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (!token) {
@@ -159,15 +166,20 @@ const QuizPage: React.FC = () => {
     return (
 
         <div className={style.quizContainer}>
-            {popup && <Popup score={finalScore} />}
+            {popup && <Popup coins={user?.coins || 0} continueQuiz={()=>{
+                popupHandleOpen()
+                revive()
+                }}   score={finalScore}  endQuiz={handleClose} />}
             <div className={style.quizWrapper}>
                 <div className={style.logo}>
                     <img src={logo} alt="Logo" />
+                    <div className={style.coinNumber1}>
+                        <img src={coin} alt="coin" />
+                        <p>{user?.coins || 0}</p>
+                    </div>
                 </div>
                 <div className={style.stats}>
                     <Stat icon={trophy} title='Bodovi' color='#2559D2' number={result?.score || 0} />
-                    <Stat icon={medal} title='Najbolji rezultat' color="#FBBC05" number={user?.bestScore || 0} />
-                    <Stat className={style.hiddenStat} icon={star} title="Streak" color="#EA4335" number={result?.score || 0} />
                     <Stat icon={clock} color="#9747FF" number={time || 0} />
                 </div>
                 <div className={style.body}>
