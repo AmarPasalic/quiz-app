@@ -1,6 +1,6 @@
 
 
-const Revive = async() => {
+const Revive = async () => {
     try {
         const token = localStorage.getItem("token");
         const response = await fetch(

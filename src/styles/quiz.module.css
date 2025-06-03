@@ -17,9 +17,7 @@
 
 .loader {
     border: 16px solid #f3f3f3;
-    /* Light grey */
     border-top: 16px solid #3498db;
-    /* Blue */
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -48,17 +46,20 @@
 
 .logo {
     width: 100%;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .logo img {
-    width: 132px;
-    height: 42px;
+    min-width: 132px;
+    min-height: 42px;
 }
 .coinNumber1 {
-    justify-self: flex-start !important;
+    position: absolute;
+    left: 10px;
     display: flex;
     align-items: center;
 }

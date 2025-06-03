@@ -46,7 +46,7 @@ body {
 }
 
 .coinsNumber {
-    width: 4%;
+    min-width: 4%;
     display: flex;
     align-items: center;
     gap: 5px;
